@@ -1,0 +1,72 @@
+name: Refresh data
+
+# Download the latest matches, rebuild the database, re-export web/data and commit it.
+# Pushing to main triggers the production deployment on the host.
+on:
+  schedule:
+    # Daily at 04:23 UTC: after the evening matches and the provider's overnight corrections.
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      # Finished matches never change after a few days, so keep their files between runs.
+      - name: Restore raw data cache
+        uses: actions/cache@v4
+        with:
+          path: data/raw
+          key: bsd-raw-${{ github.run_id }}
+          restore-keys: bsd-raw-
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Download, build and export
+        env:
+          BSD_TOKEN: ${{ secrets.BSD_TOKEN }}
+        run: python -m pipeline run
+
+      - name: Check the database
+        run: python -m pytest -q
+
+      # Make sure the site still builds with the new data before publishing it.
+      - name: Build the site
+        working-directory: web
+        run: |
+          npm ci
+          npm run build
+
+      - name: Commit the new data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add web/data
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "Refresh data $(date -u +%F)"
+            git push
+          fi

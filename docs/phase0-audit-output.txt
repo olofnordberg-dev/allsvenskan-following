@@ -1,0 +1,353 @@
+
+==============================================================================
+1. League and seasons
+==============================================================================
+{"id": 26, "name": "Allsvenskan", "country": "Sweden", "is_women": false, "is_active": true}
+season   events finished league teams rounds  first..last finished
+2026        243      224    241    16     30  2026-04-04..2026-11-08
+2025        242      242    240    16     30  2025-03-29..2025-11-29
+2024        242      242    240    16     30  2024-03-30..2024-11-24
+2023        242      242    240    16     30  2023-04-01..2023-11-27
+2022        242      242    240    16     30  2022-04-02..2022-11-13
+2021        242      242    240    16     30  2021-04-10..2021-12-14
+2020        244      242    242    16     30  2020-06-14..2020-12-13
+2019        242      242    240    16     30  2019-03-31..2019-11-10
+2018        242      242    240    16     30  2018-04-01..2018-11-25
+2017        243      242    241    16     30  2017-04-01..2017-11-19
+2016        242      242    240    16     30  2016-04-02..2016-11-20
+2015        243      242    241    16     30  2015-04-04..2015-11-08
+2014        242      241    240    16     30  2014-03-30..2014-11-09
+2013        242      242    240    16     30  2013-03-31..2013-11-10
+2012        242      242    240    16     30  2012-03-31..2012-11-17
+2011        242      242    240    16     30  2011-04-02..2011-10-30
+2010        242      242    240    16     30  2010-03-13..2010-11-14
+2009        242      242    240    16     30  2009-04-04..2009-11-08
+2008        242      242    240    16     30  2008-03-30..2008-11-16
+
+==============================================================================
+2. Current season 2026: match list
+==============================================================================
+status counts: {'notstarted': 18, 'finished': 224, 'unresolved': 1}
+stage counts: {'league-phase': 241, 'qualification-round-1': 2}
+league-phase matches: 241 (16 teams x 15 home games = 240 expected)
+home/away pairings listed more than once: 1
+   id=207453 2026-05-25 R9 IF Elfsborg - BK Häcken finished 1-1 replaced_by=None
+   id=46368 2026-05-23 R9 IF Elfsborg - BK Häcken unresolved None-None replaced_by=None
+finished league matches per team: {'AIK': 28, 'BK Häcken': 28, 'Degerfors IF': 28, 'Djurgårdens IF': 28, 'GAIS': 28, 'Halmstads BK': 28, 'Hammarby IF': 28, 'IF Brommapojkarna': 28, 'IF Elfsborg': 28, 'IFK Göteborg': 28, 'IK Sirius': 28, 'Kalmar FF': 28, 'Malmö FF': 28, 'Mjällby AIF': 28, 'Västerås SK': 28, 'Örgryte IS': 28}
+last finished: 2026-11-08T15:30:00+00:00 AIK - BK Häcken
+remaining league fixtures: 16 | next: 2026-11-21T14:00:00+00:00
+
+Event fields, finished league matches (n=224)
+  attendance                            0% filled
+  away_coach_id                       100% filled
+  away_score                          100% filled
+  away_score_ht                       100% filled
+  away_team                           100% filled
+  away_team_id                        100% filled
+  current_minute                      100% filled
+  event_date                          100% filled
+  extra_time_score                      0% filled
+  group_name                            0% filled
+  has_xg                              100% filled
+  head_to_head                        100% filled
+  highlights                           62% filled
+  home_coach_id                       100% filled
+  home_score                          100% filled
+  home_score_ht                       100% filled
+  home_team                           100% filled
+  home_team_id                        100% filled
+  id                                  100% filled
+  is_local_derby                      100% filled
+  is_neutral_ground                   100% filled
+  league_id                           100% filled
+  live_websocket                      100% filled
+  penalty_shootout                      0% filled
+  period                               93% filled
+  pitch_condition                      77% filled
+  previous_leg_event_id                 0% filled
+  referee_id                          100% filled
+  replaced_by                           0% filled
+  round_label                         100% filled
+  round_name                            0% filled
+  round_number                        100% filled
+  season_id                           100% filled
+  stage                               100% filled
+  stage_name                          100% filled
+  status                              100% filled
+  travel_distance_km                   85% filled
+  venue_id                            100% filled
+  weather                             100% filled
+  websocket_plus                      100% filled
+
+==============================================================================
+3. Per-match resources: availability flags
+==============================================================================
+
+2026 all finished league matches: n=224  lineup_status={'confirmed': 224}
+  average_positions=100%  broadcasts=82%  incidents=100%  lineups=100%  momentum=99%  odds=80%  player_stats=100%  prediction=53%  shotmap=100%  stats=100%  xg=12%
+  team stat keys present in <100% of matches: {'attack': '85%', 'attack_pct': '85%', 'average_rating': '55%', 'ball_safe': '85%', 'ball_safe_pct': '85%', 'big_chances': '97%', 'big_chances_missed': '83%', 'big_chances_scored': '81%', 'big_saves': '58%', 'dangerous_attack': '85%', 'dangerous_attack_pct': '85%', 'distance_covered': '33%', 'errors_lead_to_a_goal': '21%', 'errors_lead_to_a_shot': '48%', 'expected_goals': '76%', 'expected_goals_on_target': '67%', 'fouled_in_final_third': '99%', 'high_claims': '67%', 'hit_woodwork': '82%', 'number_of_sprints': '33%', 'offsides': '93%', 'penalty_saves': '3%', 'punches': '63%', 'through_balls': '40%'}
+  team stat keys (60): accurate_passes, aerial_duels, attack, attack_pct, average_rating, ball_possession, ball_safe, ball_safe_pct, big_chances, big_chances_missed, big_chances_scored, big_saves, blocked_shots, clearances, corner_kicks, crosses, dangerous_attack, dangerous_attack_pct, dispossessed, distance_covered, dribbles, duels, errors_lead_to_a_goal, errors_lead_to_a_shot, expected_goals, expected_goals_on_target, final_third_entries, final_third_phase, fouled_in_final_third, fouls, free_kicks, goal_kicks, goalkeeper_saves, ground_duels, high_claims, hit_woodwork, interceptions, long_balls, number_of_sprints, offsides, pass_accuracy_pct, passes, penalty_saves, punches, recoveries, red_cards, shots_inside_box, shots_off_target, shots_on_target, shots_outside_box, tackles, tackles_won, through_balls, throw_ins, total_saves, total_shots, total_tackles, touches_in_penalty_area, xg, yellow_cards
+
+2025 (all): n=240  lineup_status={'confirmed': 240}
+  average_positions=100%  broadcasts=0%  incidents=100%  lineups=100%  momentum=100%  odds=0%  player_stats=100%  prediction=0%  shotmap=100%  stats=100%  xg=100%
+
+2024 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=100%  broadcasts=0%  incidents=100%  lineups=100%  momentum=100%  odds=0%  player_stats=100%  prediction=0%  shotmap=100%  stats=100%  xg=0%
+
+2023 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=100%  broadcasts=0%  incidents=100%  lineups=100%  momentum=100%  odds=0%  player_stats=100%  prediction=0%  shotmap=100%  stats=100%  xg=0%
+
+2022 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=50%  broadcasts=0%  incidents=100%  lineups=100%  momentum=42%  odds=0%  player_stats=100%  prediction=0%  shotmap=50%  stats=100%  xg=0%
+
+2021 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2020 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2019 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2018 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2017 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2016 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2015 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2014 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2013 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=100%  xg=0%
+
+2012 (sample): n=12  lineup_status={'confirmed': 12}
+  average_positions=0%  broadcasts=0%  incidents=100%  lineups=100%  momentum=0%  odds=0%  player_stats=100%  prediction=0%  shotmap=0%  stats=8%  xg=0%
+
+2011 (sample): n=12  lineup_status={'unavailable': 12}
+  average_positions=0%  broadcasts=0%  incidents=0%  lineups=0%  momentum=0%  odds=0%  player_stats=0%  prediction=0%  shotmap=0%  stats=0%  xg=0%
+
+2010 (sample): n=12  lineup_status={'unavailable': 12}
+  average_positions=0%  broadcasts=0%  incidents=0%  lineups=0%  momentum=0%  odds=0%  player_stats=0%  prediction=0%  shotmap=0%  stats=0%  xg=0%
+
+2009 (sample): n=12  lineup_status={'unavailable': 12}
+  average_positions=0%  broadcasts=0%  incidents=0%  lineups=0%  momentum=0%  odds=0%  player_stats=0%  prediction=0%  shotmap=0%  stats=0%  xg=0%
+
+2008 (sample): n=12  lineup_status={'unavailable': 12}
+  average_positions=0%  broadcasts=0%  incidents=0%  lineups=0%  momentum=0%  odds=0%  player_stats=0%  prediction=0%  shotmap=0%  stats=0%  xg=0%
+
+==============================================================================
+4. Per-match detail, sample of 2026 matches
+==============================================================================
+match-level xg_estimated flag: {True: 24}
+shot-level xg_estimated flag: {True: 674} | shots per match: 28.1
+example team xg object: {'actual': 3.4, 'estimated': True}
+incident types: {'period': 46, 'card': 83, 'goal': 66, 'substitution': 194, 'injuryTime': 39, 'penalty_missed': 1}
+
+Shot fields (n=674)
+  added                                 9% filled
+  block                                60% filled
+  body                                100% filled
+  gm                                  100% filled
+  gml                                 100% filled
+  gtype                                10% filled
+  home                                100% filled
+  min                                 100% filled
+  player_id                           100% filled
+  pos                                 100% filled
+  sit                                 100% filled
+  type                                100% filled
+  xg                                  100% filled
+  xg_estimated                        100% filled
+  xgot                                  0% filled
+
+Player match-stat fields (n=955)
+  accurate_cross                      100% filled
+  accurate_keeper_sweeper             100% filled
+  accurate_long_balls                 100% filled
+  accurate_opposition_half_passes     100% filled
+  accurate_own_half_passes            100% filled
+  accurate_pass                       100% filled
+  aerial_lost                         100% filled
+  aerial_won                          100% filled
+  ball_carries_count                  100% filled
+  ball_recovery                       100% filled
+  best_ball_carry_progression          18% filled
+  big_chance_created                  100% filled
+  big_chance_missed                   100% filled
+  blocked_scoring_attempt             100% filled
+  challenge_lost                      100% filled
+  clearance_off_line                  100% filled
+  defensive_value_normalized           34% filled
+  dispossessed                        100% filled
+  dribble_value_normalized             33% filled
+  duel_lost                           100% filled
+  duel_won                            100% filled
+  error_lead_to_a_goal                100% filled
+  error_lead_to_a_shot                100% filled
+  event_id                            100% filled
+  expected_assists                      0% filled
+  expected_goals                       16% filled
+  expected_goals_on_target              0% filled
+  fouls                               100% filled
+  goal_assist                         100% filled
+  goalkeeper_value_normalized           2% filled
+  goals                               100% filled
+  goals_conceded                      100% filled
+  goals_prevented                       0% filled
+  good_high_claim                     100% filled
+  high_claims                         100% filled
+  hit_woodwork                        100% filled
+  id                                  100% filled
+  interception                        100% filled
+  keeper_save_value                     2% filled
+  key_pass                            100% filled
+  last_man_tackle                     100% filled
+  minutes_played                      100% filled
+  outfielder_block                    100% filled
+  pass_value_normalized                33% filled
+  player_id                           100% filled
+  possession_lost                     100% filled
+  progressive_ball_carries_count      100% filled
+  punches                             100% filled
+  rating                               74% filled
+  red_card                            100% filled
+  saved_shots_from_inside_the_box     100% filled
+  saves                               100% filled
+  shot_value_normalized                17% filled
+  shots_on_target                     100% filled
+  team_id                             100% filled
+  total_ball_carries_distance          33% filled
+  total_clearance                     100% filled
+  total_contest                       100% filled
+  total_cross                         100% filled
+  total_keeper_sweeper                100% filled
+  total_long_balls                    100% filled
+  total_offside                       100% filled
+  total_opposition_half_passes        100% filled
+  total_own_half_passes               100% filled
+  total_pass                          100% filled
+  total_progression                   100% filled
+  total_progressive_ball_carries_distance   18% filled
+  total_shots                         100% filled
+  total_tackle                        100% filled
+  touches                             100% filled
+  unsuccessful_touch                  100% filled
+  was_fouled                          100% filled
+  won_contest                         100% filled
+  won_tackle                          100% filled
+  yellow_card                         100% filled
+
+Line-up player fields (n=955)
+  ai_score                              0% filled
+  captain                             100% filled
+  id                                  100% filled
+  jersey_number                       100% filled
+  name                                100% filled
+  position                            100% filled
+  short_name                          100% filled
+
+Unavailable-player fields (in line-up response) (n=62)
+  id                                  100% filled
+  name                                100% filled
+  reason                              100% filled
+  short_name                          100% filled
+  status                              100% filled
+  example: {"id": 16238, "name": "Adrian Helm", "short_name": "A. Helm", "status": "injured", "reason": "Knee Injury"}
+  reasons: {'Knee Injury': 6, 'Cruciate Ligament Injury': 7, 'Unknown': 16, 'Ankle Injury': 2, 'Leg Injury': 2, 'Calf Injury': 1, 'Illness': 3, 'Thigh Injury': 3, 'Knee Surgery': 4, 'Foot Injury': 3, 'Broken Ankle': 2, 'Back Injury': 3, 'Concussion': 1, 'yellow_or_red_card_suspension': 1, 'red_card_suspension': 1, 'yellow_card_accumulation_suspension': 5, 'Shoulder Injury': 2}
+
+==============================================================================
+5. Season-level and team-level resources
+==============================================================================
+standings top-level keys: ['league_id', 'season', 'grouped', 'zones', 'standings']
+first row: {"position": 1, "team_id": 438, "team_name": "Hammarby IF", "played": 28, "won": 18, "drawn": 4, "lost": 6, "gf": 60, "ga": 23, "gd": 37, "pts": 58, "xgf": 59.3, "xga": 29.8, "xgd": 29.5, "xg_games": 28, "form": "WWWWW", "live": false, "zone": {"key": "clq", "label": "Champions League Qualification", "type": "qualification"}}
+rows: 16
+
+squad for team 449 (AIK): keys=['team_id', 'count', 'players'] players=34
+
+Squad player fields (n=34)
+  availability                        100% filled
+  date_of_birth                        97% filled
+  id                                  100% filled
+  injury_expected_return               15% filled
+  injury_type                          18% filled
+  jersey_number                       100% filled
+  name                                100% filled
+  nationality                          97% filled
+  position                             97% filled
+  short_name                          100% filled
+  availability values: {'available': 28, 'injured': 5, 'suspended': 1}
+
+team form keys: {"team_id": 449, "team_name": "AIK", "requested": 5, "matches": 5, "league_id": 26, "from_date": "2026-10-17T15:30:00+00:00", "to_date": "2026-11-08T15:30:00+00:00", "overall": {"matches": 5, "won": 2, "drawn": 2, "lost": 1, "goals_for": 10, "goals_against": 9, "form": "WLDWD", "points_per_match": 1.6, "stats": {"accurate_passes": {"average": 424.8, "total": 2124.0, "matches": 5}, "aerial_duels": {"average": 51.4, "total": 257.0, "matches": 5}, "attack": {"average": 73.8, "total": 369.0, "matches": 5}, "attack_pct": {"average": 25.0, "total": 125.0, "matches": 5}, "average_rating": {"average": 6.878, "total": 34.39, "matches": 5}, "ball_possession": {"average": 51.6, "total": 258.0, "matches": 5}, "ball_safe": {"average": 70.0, "total": 350.0, "matches": 5}, "ball_safe_pct": {"average": 50.4, "total": 252.0, "matches": 5}, "big_chances": {"average": 2.0, "total": 10.0, "matches": 5}, "bi
+
+top/goals: {"_error": 400, "_body": "{\"error\":true,\"status\":400,\"detail\":{\"stat\":\"Must be one of ['scorers', 'assists', 'yellowcards', 'redcards', 'fouls'].\"}}"}
+
+top/assists: {"league_id": 26, "team_id": null, "season": {"id": 9, "name": "Allsvenskan 2026", "year": 2026, "start_date": "2026-01-01", "end_date": "2026-12-31", "is_current": true, "stages": [{"stage": "league-phase", "stage_name": "League phase", "matches": 242, "rounds": 30, "start_date": "2026-04-04", "end_date": "2026-11-29"}, {"stage": "qualification-round-1", "stage_name": "Qualification Round 1", "ma
+
+top/rating: {"_error": 400, "_body": "{\"error\":true,\"status\":400,\"detail\":{\"stat\":\"Must be one of ['scorers', 'assists', 'yellowcards', 'redcards', 'fouls'].\"}}"}
+
+managers: 27
+
+Manager fields (n=27)
+  avg_goals_conceded                   96% filled
+  avg_goals_scored                     96% filled
+  avg_possession                       96% filled
+  btts_pct                             96% filled
+  clean_sheet_pct                      96% filled
+  country                             100% filled
+  current_team_id                     100% filled
+  draws                               100% filled
+  id                                  100% filled
+  losses                              100% filled
+  matches_total                       100% filled
+  name                                100% filled
+  over_25_pct                          96% filled
+  preferred_formation                  96% filled
+  short_name                          100% filled
+  stats_updated_at                     96% filled
+  tactical_profile                     96% filled
+  win_pct                              96% filled
+  wins                                100% filled
+
+referees: 17 {"id": 1969, "name": "Mohammed Al-Hakim", "country": "Sweden", "nationality_a3": "", "birthdate": null, "matches": 44, "total_yellow_cards": 123, "total_red_cards": 6, "avg_yellow_per_match": 2.8, "avg_red_per_match": 0.14, "avg_goals_per_match": 2.64, "avg_fouls_per_match": 23.9, "career_games": 435, "career_yellow_cards": 1353, "career_red_cards": 29}
+
+==============================================================================
+6. Upcoming matches: what is known before kick-off
+==============================================================================
+
+2026-11-21T14:00:00+00:00 Mjällby AIF - Malmö FF (id 46534)
+  available: {'stats': False, 'lineups': True, 'incidents': False, 'shotmap': False, 'xg': False, 'momentum': False, 'average_positions': False, 'player_stats': False, 'prediction': True, 'broadcasts': True, 'odds': True}
+  lineup_status: predicted | beta: True | formations: {'home': '3-4-3', 'away': '4-3-3'} | unavailable: {'home': 2, 'away': 6}
+  prediction: {"match_result": {"prob_home": 30.4, "prob_draw": 26.1, "prob_away": 43.5, "predicted": "A"}, "expected_goals": {"home": 1.26, "away": 1.3}, "over_under": {"prob_over_15": 74.8, "prob_over_25": 52.3, "prob_over_35": 29.4}, "btts": {"prob_yes": 54.4}, "score": {"most_likely": "1-1"}, "draw_no_bet": {
+  odds: {"home_win": 3.0, "draw": 3.5, "away_win": 2.1, "over_15_goals": 1.25, "over_25_goals": 1.8, "over_35_goals": 3.0, "under_15_goals": 3.75, "under_25_goals": 2.0, "under_35_goals": 1.36, "btts_yes": 1. | updated None
+
+2026-11-21T14:00:00+00:00 AIK - Degerfors IF (id 46528)
+  available: {'stats': False, 'lineups': True, 'incidents': False, 'shotmap': False, 'xg': False, 'momentum': False, 'average_positions': False, 'player_stats': False, 'prediction': True, 'broadcasts': True, 'odds': True}
+  lineup_status: predicted | beta: True | formations: {'home': '4-4-2', 'away': '5-3-2'} | unavailable: {'home': 6, 'away': 2}
+  prediction: {"match_result": {"prob_home": 42.0, "prob_draw": 22.6, "prob_away": 35.4, "predicted": "H"}, "expected_goals": {"home": 1.85, "away": 1.04}, "over_under": {"prob_over_15": 79.1, "prob_over_25": 58.7, "prob_over_35": 35.9}, "btts": {"prob_yes": 58.4}, "score": {"most_likely": "1-1"}, "draw_no_bet": 
+  odds: {"home_win": 2.15, "draw": 4.0, "away_win": 2.55, "over_15_goals": 1.18, "over_25_goals": 1.6, "over_35_goals": 2.5, "under_15_goals": 4.5, "under_25_goals": 2.3, "under_35_goals": 1.5, "btts_yes": 1. | updated None
+
+2026-11-21T16:30:00+00:00 GAIS - Västerås SK (id 46530)
+  available: {'stats': False, 'lineups': True, 'incidents': False, 'shotmap': False, 'xg': False, 'momentum': False, 'average_positions': False, 'player_stats': False, 'prediction': True, 'broadcasts': True, 'odds': True}
+  lineup_status: predicted | beta: True | formations: {'home': '4-3-3', 'away': '3-4-3'} | unavailable: {'home': 3, 'away': 0}
+  prediction: {"match_result": {"prob_home": 40.7, "prob_draw": 29.2, "prob_away": 30.1, "predicted": "H"}, "expected_goals": {"home": 1.33, "away": 1.13}, "over_under": {"prob_over_15": 70.5, "prob_over_25": 45.0, "prob_over_35": 23.1}, "btts": {"prob_yes": 50.2}, "score": {"most_likely": "1-1"}, "draw_no_bet": 
+  odds: {"home_win": 1.76, "draw": 3.5, "away_win": 3.9, "over_15_goals": 1.22, "over_25_goals": 1.8, "over_35_goals": 2.75, "under_15_goals": 4.0, "under_25_goals": 2.0, "under_35_goals": 1.4, "btts_yes": 1. | updated None
+
+==============================================================================
+7. Freshness
+==============================================================================
+last finished match kick-off: 2026-11-08T15:30:00+00:00
+its prediction record last updated: 2026-11-08T17:38:08Z (set when the result was settled)
+its line-up record last updated: 2026-11-16T03:05:17Z
+docs: hot endpoints edge-cached ~5 s; live scores carried during matches
+
+==============================================================================
+8. API usage
+==============================================================================
+requests made this run: 4 | quota header: "football";r=6705;t=29023 (policy: 7500 requests per day)
