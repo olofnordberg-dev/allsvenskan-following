@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Absences } from "@/components/Absences";
 import { Compare } from "@/components/Compare";
 import { Kickoff } from "@/components/Kickoff";
 import { Lineup } from "@/components/Lineup";
@@ -95,6 +96,8 @@ export default async function MatchPage({ params }: PageProps<"/[team]/match/[id
             <p className="small secondary">Earlier this season: {me.short} {earlier.gf}–{earlier.ga} {opp.short} ({earlier.isHome ? "home" : "away"}, round {earlier.round}).</p>
           )}
         </section>
+
+        {fc && <Absences me={me} opp={opp} mine={fc.lineups[mySide]} theirs={fc.lineups[oppSide]} />}
 
         {fc && (
           <section className="card stack">
@@ -212,8 +215,8 @@ export default async function MatchPage({ params }: PageProps<"/[team]/match/[id
               <span className="muted small">From recent starts and current injuries and suspensions; confirmed line-ups come about an hour before kick-off</span>
             </div>
             <div className="two-col">
-              <Lineup team={me} forecast={fc.lineups[mySide]} providerXi={fc.provider.xi[mySide].players} tone="mine" />
-              <Lineup team={opp} forecast={fc.lineups[oppSide]} providerXi={fc.provider.xi[oppSide].players} tone="theirs" />
+              <Lineup team={me} forecast={fc.lineups[mySide]} providerXi={fc.provider.xi[mySide].players} tone="mine" showUnavailable={false} />
+              <Lineup team={opp} forecast={fc.lineups[oppSide]} providerXi={fc.provider.xi[oppSide].players} tone="theirs" showUnavailable={false} />
             </div>
           </section>
         )}

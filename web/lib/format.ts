@@ -46,3 +46,5 @@ export function reasonText(status: string | null, reason: string | null): string
   if (r.includes("suspension")) return `suspended, ${r.replace(" suspension", "")}`;
   return `${status ?? "out"}, ${r}`;
 }
+
+export const TIER: Record<string, string> = { key: "Key player", regular: "Regular starter", rotation: "Rotation", fringe: "Fringe" };

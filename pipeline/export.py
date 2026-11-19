@@ -11,7 +11,7 @@ import duckdb
 import numpy as np
 import pandas as pd
 
-from . import predict, trends
+from . import impact, predict, trends
 from .build import SET_PIECE, cached, cached_all
 from .config import DB_PATH, LEAGUE_ID, RECENT_MATCHES, WEB_DATA
 from .metrics import METRICS, TREND_METRICS
@@ -162,6 +162,44 @@ def main() -> None:
     future = pd.Timestamp("2100-01-01", tz="UTC")
     squads = {tid: cached(f"/teams/{tid}/squad/").get("players", []) for tid in team_ids}
 
+    def build_players(tid: int) -> list[dict]:
+        """Every player with minutes this season, with usage, output and impact."""
+        t = cur[cur.team_id == tid].sort_values("kickoff")
+        tp = pm[(pm.team_id == tid) & (pm.season == season)]
+        events = t.event_id.tolist()
+        last5 = set(events[-RECENT_MATCHES:])
+        avail = {p["id"]: p for p in squads[tid]}
+        team_shots, team_xg = max(tp.shots.sum(), 1), max(tp.npxg.sum(), 0.01)
+        players = []
+        for pid, g in tp.groupby("player_id"):
+            if g.minutes.sum() == 0:
+                continue
+            by_event = g.set_index("event_id")
+            a = avail.get(pid)
+            last = g.sort_values("kickoff").iloc[-1]
+            players.append({
+                "id": int(pid), "name": last["name"], "position": (a or {}).get("position") or last["position"],
+                "apps": int((g.minutes > 0).sum()), "starts": int(g.started.sum()), "minutes": int(g.minutes.sum()),
+                # stoppage time can push a match past 90 minutes; a share is capped at the full match
+                "minShare": float(g.minutes.clip(upper=90).sum() / (90 * len(events))),
+                "minShareLast5": float(g[g.event_id.isin(last5)].minutes.clip(upper=90).sum() / (90 * len(last5))),
+                "goals": int(g.goals.sum()), "assists": int(g.assists.sum()), "shots": int(g.shots.sum()),
+                "npxg": float(g.npxg.sum()), "keyPasses": int(g.key_passes.sum()),
+                "shotShare": float(g.shots.sum() / team_shots), "xgShare": float(g.npxg.sum() / team_xg),
+                "rating": float(g.rating.mean()) if g.rating.notna().any() else None,
+                "yellow": int(g.yellow.sum()), "red": int(g.red.sum()),
+                "inSquad": a is not None, "availability": (a or {}).get("availability"),
+                "injury": (a or {}).get("injury_type") or None, "expectedReturn": (a or {}).get("injury_expected_return"),
+                "matchMinutes": [min(int(by_event.minutes.get(e, 0)), 90) if e in by_event.index else None for e in events],
+                "matchStarts": [bool(by_event.started.get(e, False)) if e in by_event.index else False for e in events],
+            })
+        players.sort(key=lambda p: -p["minutes"])
+        impact.add_impact(players)
+        return players
+
+    team_players = {tid: build_players(tid) for tid in team_ids}
+    impact_of = {tid: {p["id"]: p for p in ps} for tid, ps in team_players.items()}
+
     def lineup_forecast(tid: int) -> dict:
         tp = pm[(pm.team_id == tid) & (pm.season == season)]
         events = tp.drop_duplicates("event_id").sort_values("kickoff")["event_id"].tolist()
@@ -177,11 +215,25 @@ def main() -> None:
                   if p not in out_now and (not in_squad or p in in_squad)]
         row = lambda p, i: {"id": int(p), "name": names.loc[p, "name"], "position": names.loc[p, "position"],  # noqa: E731
                             "startScore": float(sc[p]), "expMinutes": float(exp_min.get(p, 0)), "inEleven": i < 11}
+
+        def absent(p: dict) -> dict:
+            info = impact_of[tid].get(p["id"])
+            return {
+                "id": p["id"], "name": p["name"], "position": p.get("position") or (info or {}).get("position") or "",
+                "status": p.get("availability"), "reason": p.get("injury_type") or None,
+                "expectedReturn": p.get("injury_expected_return"), "startScore": float(sc.get(p["id"], 0)),
+                # a player with no minutes this season has no impact to lose
+                "impact": info["impact"] if info else 0.0, "impactRank": info["impactRank"] if info else None,
+                "tier": info["tier"] if info else "fringe", "minShare": info["minShare"] if info else 0.0,
+                "goals": info["goals"] if info else 0, "assists": info["assists"] if info else 0,
+                "npxg": info["npxg"] if info else 0.0, "rating": info["rating"] if info else None,
+            }
+
+        unavailable = sorted((absent(p) for p in out_now.values()), key=lambda u: -u["impact"])
         return {
             "players": [row(p, i) for i, p in enumerate(ranked[:18]) if sc[p] > 0.02 or i < 11],
-            "unavailable": [{"id": p["id"], "name": p["name"], "status": p.get("availability"),
-                             "reason": p.get("injury_type") or None, "expectedReturn": p.get("injury_expected_return"),
-                             "startScore": float(sc.get(p["id"], 0))} for p in out_now.values()],
+            "unavailable": unavailable,
+            "absence": impact.absence_weight(team_players[tid], set(out_now)),
         }
 
     forecasts = {}
@@ -271,36 +323,8 @@ def main() -> None:
                            "p" if r.situation == "penalty" else "s" if r.situation in SET_PIECE else "f" if r.situation == "fast-break" else "o"]
                           for r in d.itertuples()]
 
-        # players
-        tp = pm[(pm.team_id == tid) & (pm.season == season)]
         events = t.event_id.tolist()
-        last5 = set(events[-RECENT_MATCHES:])
-        avail = {p["id"]: p for p in squads[tid]}
-        team_shots, team_xg = max(tp.shots.sum(), 1), max(tp.npxg.sum(), 0.01)
-        players = []
-        for pid, g in tp.groupby("player_id"):
-            if g.minutes.sum() == 0:
-                continue
-            by_event = g.set_index("event_id")
-            a = avail.get(pid)
-            last = g.sort_values("kickoff").iloc[-1]
-            players.append({
-                "id": int(pid), "name": last["name"], "position": (a or {}).get("position") or last["position"],
-                "apps": int((g.minutes > 0).sum()), "starts": int(g.started.sum()), "minutes": int(g.minutes.sum()),
-                # stoppage time can push a match past 90 minutes; a share is capped at the full match
-                "minShare": float(g.minutes.clip(upper=90).sum() / (90 * len(events))),
-                "minShareLast5": float(g[g.event_id.isin(last5)].minutes.clip(upper=90).sum() / (90 * len(last5))),
-                "goals": int(g.goals.sum()), "assists": int(g.assists.sum()), "shots": int(g.shots.sum()),
-                "npxg": float(g.npxg.sum()), "keyPasses": int(g.key_passes.sum()),
-                "shotShare": float(g.shots.sum() / team_shots), "xgShare": float(g.npxg.sum() / team_xg),
-                "rating": float(g.rating.mean()) if g.rating.notna().any() else None,
-                "yellow": int(g.yellow.sum()), "red": int(g.red.sum()),
-                "inSquad": a is not None, "availability": (a or {}).get("availability"),
-                "injury": (a or {}).get("injury_type") or None, "expectedReturn": (a or {}).get("injury_expected_return"),
-                "matchMinutes": [min(int(by_event.minutes.get(e, 0)), 90) if e in by_event.index else None for e in events],
-                "matchStarts": [bool(by_event.started.get(e, False)) if e in by_event.index else False for e in events],
-            })
-        players.sort(key=lambda p: -p["minutes"])
+        players = team_players[tid]
         mg = managers.get(tid) or {}
         write(out / "teams" / f"{slug[tid]}.json", {
             **T[tid], "position": pos[slug[tid]],

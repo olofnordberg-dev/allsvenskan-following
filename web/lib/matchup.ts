@@ -75,10 +75,14 @@ export function keysToTheMatch(me: TeamData, opp: TeamData, meta: Meta, forecast
   if (forecast) {
     const side = forecast.home === opp.slug ? "home" : "away";
     const mySide = side === "home" ? "away" : "home";
-    const missing = (s: "home" | "away") => forecast.lineups[s].unavailable.filter((u) => u.startScore >= 0.5).map((u) => u.name);
+    const missing = (s: "home" | "away") =>
+      forecast.lineups[s].unavailable
+        .filter((u) => u.startScore >= 0.5 || (u.impactRank !== null && u.impactRank <= 8 && u.minShare >= 0.4))
+        .map((u) => (u.impactRank !== null ? `${u.name} (${ordinal(u.impactRank)} by impact)` : u.name));
     const theirsOut = missing(side), mineOut = missing(mySide);
-    if (theirsOut.length) mine.push({ kind: "edge", text: `${opp.short} are without regular starter${theirsOut.length > 1 ? "s" : ""} ${theirsOut.join(", ")}.` });
-    if (mineOut.length) mine.push({ kind: "risk", text: `${me.short} are without regular starter${mineOut.length > 1 ? "s" : ""} ${mineOut.join(", ")}.` });
+    const weight = (s: "home" | "away") => Math.round(forecast.lineups[s].absence.weight * 100);
+    if (theirsOut.length) mine.push({ kind: "edge", text: `${opp.short} are without ${theirsOut.join(", ")}: ${weight(side)}% of their core impact.` });
+    if (mineOut.length) mine.push({ kind: "risk", text: `${me.short} are without ${mineOut.join(", ")}: ${weight(mySide)}% of their core impact.` });
   }
   return { mine: mine.slice(0, 6), theirs: theirs.slice(0, 4) };
 }

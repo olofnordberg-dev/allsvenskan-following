@@ -636,3 +636,25 @@ h2 { font-family: var(--font-display), sans-serif; font-size: 22px; font-weight:
   .appbar-link { display: none; }
   .pb-track b { font-size: 12px; }
 }
+
+/* unavailable players on the match page */
+.abs-summary { font-size: 15px; font-weight: 550; }
+.absence-side { display: grid; gap: 10px; align-content: start; }
+.abs-head { display: flex; align-items: center; gap: 10px; }
+.abs-head h3 { color: var(--text-primary); font-size: 14px; flex: 1; }
+.chip.abs-ok { color: var(--good-text); }
+.chip.abs-mid { color: #b47a00; }
+.chip.abs-bad { color: var(--bad-text); }
+.abs-weight { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 13px; }
+.abs-weight .bar { position: relative; height: 10px; }
+.abs-tick { position: absolute; top: -3px; bottom: -3px; width: 1px; background: var(--text-muted); opacity: 0.7; }
+.abs-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.abs-list li { display: grid; gap: 3px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.abs-name { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+.abs-name .tag { margin-left: 4px; }
+.tag.tier-key { background: var(--bad-text); color: var(--surface); }
+.tag.tier-regular { background: color-mix(in srgb, var(--bad-text) 18%, var(--track)); color: var(--text-primary); }
+.abs-impact { display: grid; grid-template-columns: 78px minmax(0, 1fr) 28px; gap: 8px; align-items: center; font-size: 13px; }
+.abs-impact .bar { height: 8px; }
+.abs-stats { font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) { .abs-impact { grid-template-columns: 70px minmax(0, 1fr) 26px; } }

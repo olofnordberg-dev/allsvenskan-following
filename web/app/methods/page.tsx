@@ -151,6 +151,28 @@ export default function MethodsPage() {
         </p>
       </section>
 
+      <section className="card stack" id="absences">
+        <h2>Unavailable players and their impact</h2>
+        <p>
+          The injury and suspension lists come from the data provider and show who is unavailable now. To say how much an
+          absence matters, every player in the current squad gets an <b>impact score</b> from 0 to 100: half is the share of the
+          team’s possible minutes he has played this season, half is his attacking share, the average of his share of the team’s
+          non-penalty xG and of its goals plus assists, scaled so the team’s biggest attacking contributor counts as full marks.
+          Minutes carry goalkeepers and defenders, who have little attacking output; the attacking half lifts the players who
+          create and finish the chances. Players are <b>ranked</b> on the score within the current squad.
+        </p>
+        <p>
+          <b>Core impact</b> is the combined score of the team’s eleven highest-impact players. A team’s absence figure is the
+          combined score of everyone unavailable divided by its core impact: below 10% is minor, 10–25% noticeable,
+          25% or more heavy. A player with no minutes this season has an impact of zero.
+        </p>
+        <p className="secondary">
+          This is a transparent rule of thumb, not a tested model: it has not been backtested against results, and it ignores
+          who the replacement is, how good the opponent’s own absences are and the position’s importance. Early in the season
+          the shares rest on few matches; the squad rank is only as good as the minutes behind it.
+        </p>
+      </section>
+
       <section className="card stack">
         <h2>Trends</h2>
         <p>

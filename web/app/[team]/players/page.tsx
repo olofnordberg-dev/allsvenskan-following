@@ -53,7 +53,7 @@ export default async function PlayersPage({ params }: PageProps<"/[team]/players
               <thead>
                 <tr>
                   <th className="left">Player</th><th>Starts</th><th>Apps</th><th>Minutes share</th><th>Last 5</th>
-                  <th className="left">Match by match</th><th>Goals</th><th>Assists</th>
+                  <th title="How much the team leans on the player: rank in the squad and score out of 100. See Methods.">Impact</th><th className="left">Match by match</th><th>Goals</th><th>Assists</th>
                   <th title="Non-penalty expected goals">npxG</th><th title="Share of the team's shots">Shots share</th>
                   <th title="Share of the team's non-penalty xG">xG share</th><th className="left">Status</th>
                 </tr>
@@ -77,6 +77,7 @@ export default async function PlayersPage({ params }: PageProps<"/[team]/players
                         {pct(p.minShareLast5)}
                         {Math.abs(change) >= 0.2 && <span className={change > 0 ? "up-text" : "down-text"} title="Clearly more or less than over the season"> {change > 0 ? "▲" : "▼"}</span>}
                       </td>
+                      <td className="num">{p.impactRank !== null ? <><b>{p.impactRank}</b> <span className="muted small">· {Math.round(p.impact)}</span></> : ""}</td>
                       <td className="left"><MinuteBars minutes={p.matchMinutes} starts={p.matchStarts} /></td>
                       <td className="num">{p.goals || ""}</td>
                       <td className="num">{p.assists || ""}</td>

@@ -2,8 +2,8 @@ import type { LineupForecast, TeamData } from "@/lib/data";
 import { POSITION, reasonText } from "@/lib/format";
 
 /** Expected starters with how regularly each has started lately, then who is out. */
-export function Lineup({ team, forecast, providerXi, tone }: {
-  team: TeamData; forecast: LineupForecast; providerXi: number[]; tone: "mine" | "theirs";
+export function Lineup({ team, forecast, providerXi, tone, showUnavailable = true }: {
+  team: TeamData; forecast: LineupForecast; providerXi: number[]; tone: "mine" | "theirs"; showUnavailable?: boolean;
 }) {
   const order = ["G", "D", "M", "F", ""];
   const eleven = forecast.players.filter((p) => p.inEleven).sort((a, b) => order.indexOf(a.position) - order.indexOf(b.position));
@@ -32,7 +32,7 @@ export function Lineup({ team, forecast, providerXi, tone }: {
       {bench.length > 0 && (
         <p className="small secondary"><b>Next in line:</b> {bench.map((p) => `${p.name} (${Math.round(p.startScore * 100)}%)`).join(", ")}</p>
       )}
-      {forecast.unavailable.length > 0 && (
+      {showUnavailable && forecast.unavailable.length > 0 && (
         <p className="small secondary">
           <b>Unavailable:</b>{" "}
           {forecast.unavailable.map((u) => `${u.name} (${reasonText(u.status, u.reason)})`).join(", ")}

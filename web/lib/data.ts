@@ -54,7 +54,10 @@ export interface Player {
   keyPasses: number; shotShare: number; xgShare: number; rating: number | null; yellow: number; red: number;
   inSquad: boolean; availability: string | null; injury: string | null; expectedReturn: string | null;
   matchMinutes: (number | null)[]; matchStarts: boolean[];
+  /** 0-100 score of how much the team leans on the player; rank within the current squad (null if left). */
+  impact: number; impactRank: number | null; tier: Tier;
 }
+export type Tier = "key" | "regular" | "rotation" | "fringe";
 
 export interface Trend {
   metric: string; label: string; unit: Unit; format: Format; verdict: "better" | "worse" | "changed";
@@ -82,8 +85,14 @@ export interface TeamData extends TeamInfo {
 }
 
 export interface LineupPlayer { id: number; name: string; position: string; startScore: number; expMinutes: number; inEleven: boolean }
-export interface Unavailable { id: number; name: string; status: string | null; reason: string | null; expectedReturn: string | null; startScore: number }
-export interface LineupForecast { players: LineupPlayer[]; unavailable: Unavailable[] }
+export interface Unavailable {
+  id: number; name: string; position: string; status: string | null; reason: string | null; expectedReturn: string | null;
+  startScore: number; impact: number; impactRank: number | null; tier: Tier; minShare: number;
+  goals: number; assists: number; npxg: number; rating: number | null;
+}
+/** How much of the team's core (its eleven highest-impact players) is unavailable. */
+export interface Absence { weight: number; label: "light" | "noticeable" | "heavy"; missing: number; core: number; ranked: number }
+export interface LineupForecast { players: LineupPlayer[]; unavailable: Unavailable[]; absence: Absence }
 export interface Forecast {
   eventId: number; round: number; kickoff: string; home: string; away: string;
   probs: [number, number, number]; expGoals: [number, number];
