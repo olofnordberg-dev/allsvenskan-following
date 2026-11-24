@@ -2,10 +2,14 @@ name: Refresh data
 
 # Download the latest matches, rebuild the database, re-export web/data and commit it.
 # Pushing to main triggers the production deployment on the host.
+#
+# The nightly schedule is switched off: it needs a repository secret named BSD_TOKEN (the
+# data provider's API token), and the data is refreshed by a scheduled Claude task instead.
+# To use this workflow again, add the secret (Settings > Secrets and variables > Actions)
+# and restore the schedule:
+#   schedule:
+#     - cron: "23 4 * * *"   # after the evening matches and the provider's overnight corrections
 on:
-  schedule:
-    # Daily at 04:23 UTC: after the evening matches and the provider's overnight corrections.
-    - cron: "23 4 * * *"
   workflow_dispatch:
 
 permissions:
